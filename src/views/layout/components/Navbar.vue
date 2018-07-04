@@ -56,8 +56,8 @@ export default {
   line-height: 50px;
   border-radius: 0px !important;
   border-right: none;
-  //TODO 阴影不生效
   border-bottom: 1px solid #d8dce5;
+  margin-bottom: 2px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
   .hamburger-container {
     line-height: 58px;
