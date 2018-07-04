@@ -77,6 +77,7 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: '/' })
+            console.log('login success')
           }).catch(() => {
             this.loading = false
           })
