@@ -29,11 +29,12 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    name: 'Dashboard',
     hidden: true,
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
+      name: 'dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: '主页' }
     }]
   },
 
@@ -46,13 +47,13 @@ export const constantRouterMap = [
     children: [
       {
         path: 'table',
-        name: 'Table',
+        name: 'table',
         component: () => import('@/views/table/index'),
         meta: { title: '表格', icon: 'table' }
       },
       {
         path: 'tree',
-        name: 'Tree',
+        name: 'tree',
         component: () => import('@/views/tree/index'),
         meta: { title: '树形图', icon: 'tree' }
       }
@@ -65,7 +66,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'index',
-        name: 'Form',
+        name: 'form',
         component: () => import('@/views/form/index'),
         meta: { title: '表单', icon: 'form' }
       }
