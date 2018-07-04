@@ -1,5 +1,5 @@
 <template>
-  <el-menu class="navbar" mode="horizontal">
+  <el-menu class="navbar">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     <breadcrumb></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
@@ -52,14 +52,18 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 64px;
   line-height: 50px;
   border-radius: 0px !important;
+  border-right: none;
+  //TODO 阴影不生效
+  border-bottom: 1px solid #d8dce5;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
   .hamburger-container {
     line-height: 58px;
-    height: 50px;
+    height: 64px;
     float: left;
-    padding: 0 10px;
+    padding: 0 20px;
   }
   .screenfull {
     position: absolute;
@@ -68,7 +72,7 @@ export default {
     color: red;
   }
   .avatar-container {
-    height: 50px;
+    height: 64px;
     display: inline-block;
     position: absolute;
     right: 35px;
@@ -80,6 +84,7 @@ export default {
         width: 40px;
         height: 40px;
         border-radius: 10px;
+        vertical-align: middle;
       }
       .el-icon-caret-bottom {
         position: absolute;

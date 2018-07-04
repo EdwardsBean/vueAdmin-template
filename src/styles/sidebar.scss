@@ -1,17 +1,19 @@
 #app {
   // 主体区域
   .main-container {
-    min-height: 100%;
+    min-height: 100vh;
     transition: margin-left .28s;
-    margin-left: 180px;
+    margin-left: 250px;
+    position: relative;
   }
   // 侧边栏
   .sidebar-container {
     transition: width 0.28s;
-    width: 180px !important;
+    width: 250px !important;
     height: 100%;
     position: fixed;
     font-size: 0px;
+    box-shadow: 2px 0 6px rgba(0,21,41,.35);
     top: 0;
     bottom: 0;
     left: 0;
@@ -47,6 +49,7 @@
   .hideSidebar {
     .sidebar-container {
       width: 36px !important;
+      box-shadow: 0px 0 0px rgba(0,21,41,.35);
     }
     .main-container {
       margin-left: 36px;
@@ -100,12 +103,12 @@
     }
     .sidebar-container {
       transition: transform .28s;
-      width: 180px !important;
+      width: 250px !important;
     }
     &.hideSidebar {
       .sidebar-container {
         transition-duration: 0.3s;
-        transform: translate3d(-180px, 0, 0);
+        transform: translate3d(-250px, 0, 0);
       }
     }
   }
