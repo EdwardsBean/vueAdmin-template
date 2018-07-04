@@ -2,7 +2,7 @@
   <div class="abso_bottom">
     <div class="ant-layout-footer" >
       <div class="globalFooter___3uaww">
-        <div class="links___lgymZ"><router-link to="/dashboard/index" >Pro 首页&nbsp;&nbsp;</router-link>Vue Design</div>
+        <div class="links___lgymZ">Vue Design</div>
         <div class="copyright___3hV2q">Copyright <i class="anticon anticon-copyright"></i> 2018 XX科技有限公司出品</div>
       </div>
     </div>

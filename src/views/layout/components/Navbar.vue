@@ -32,10 +32,7 @@ export default {
     Hamburger
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
+    ...mapGetters(['sidebar', 'avatar'])
   },
   methods: {
     toggleSideBar() {
@@ -57,7 +54,7 @@ export default {
   border-radius: 0px !important;
   border-right: none;
   margin-bottom: 2px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12), 0 0 2px 0 rgba(0, 0, 0, .04);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .hamburger-container {
     line-height: 58px;
     height: 64px;
