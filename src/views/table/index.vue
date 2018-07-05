@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { fetchList, createArticle, updateArticle } from '@/api/article'
 import waves from '@/directive/waves' // 水波纹指令
 
 const calendarTypeOptions = [
@@ -201,6 +201,24 @@ export default {
       this.listQuery.page = val
       this.fetchData()
     },
+    createData() {
+      this.$refs['dataForm'].validate(valid => {
+        if (valid) {
+          this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
+          this.temp.author = 'vue-element-admin'
+          createArticle(this.temp).then(() => {
+            this.list.unshift(this.temp)
+            this.dialogFormVisible = false
+            this.$notify({
+              title: '成功',
+              message: '创建成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
+      })
+    },
     handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
       this.temp.timestamp = new Date(this.temp.timestamp)
@@ -216,22 +234,22 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
           tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          // updateArticle(tempData).then(() => {
-          //   for (const v of this.list) {
-          //     if (v.id === this.temp.id) {
-          //       const index = this.list.indexOf(v)
-          //       this.list.splice(index, 1, this.temp)
-          //       break
-          //     }
-          //   }
-          //   this.dialogFormVisible = false
-          //   this.$notify({
-          //     title: '成功',
-          //     message: '更新成功',
-          //     type: 'success',
-          //     duration: 2000
-          //   })
-          // })
+          updateArticle(tempData).then(() => {
+            for (const v of this.list) {
+              if (v.id === this.temp.id) {
+                const index = this.list.indexOf(v)
+                this.list.splice(index, 1, this.temp)
+                break
+              }
+            }
+            this.dialogFormVisible = false
+            this.$notify({
+              title: '成功',
+              message: '更新成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
         }
       })
     },
@@ -260,10 +278,14 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      fetchList(this.listQuery).then(response => {
         this.list = response.data.items
-        this.listLoading = false
         this.total = response.data.total
+
+        // Just to simulate the time of the request
+        setTimeout(() => {
+          this.listLoading = false
+        }, 1.5 * 1000)
       })
     }
   }

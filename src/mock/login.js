@@ -44,5 +44,10 @@ export default {
       return false
     }
   },
-  logout: () => 'success'
+  logout: () => {
+    return {
+      code: 200,
+      data: 'success'
+    }
+  }
 }
