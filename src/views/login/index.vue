@@ -3,29 +3,37 @@
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
       <h3 class="title">管理系统</h3>
       <el-form-item prop="username">
-        <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username">
+          <template slot="prepend">
+            <svg-icon icon-class="user" />
+          </template>
+        </el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password"></svg-icon>
+        <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="password">
+          <template slot="prepend">
+            <svg-icon icon-class="password"></svg-icon>
+          </template>
+        </el-input>
+        <span class="show-pwd" @click="showPwd">
+          <svg-icon icon-class="eye" />
         </span>
-        <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-          placeholder="password"></el-input>
-          <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-          Sign in
+          登录
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
     </el-form>
+    <div class="abso_bottom">
+      <div class="ant-layout-footer">
+        <div class="globalFooter___3uaww">
+          <div class="links___lgymZ">Vue Design</div>
+          <div class="copyright___3hV2q">Copyright
+            <i class="anticon anticon-copyright"></i> 2018 XX科技有限公司出品</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,7 +63,9 @@ export default {
         password: 'admin'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        username: [
+          { required: true, trigger: 'blur', validator: validateUsername }
+        ],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,
@@ -74,13 +84,16 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('Login', this.loginForm).then(() => {
-            this.loading = false
-            this.$router.push({ path: '/' })
-            console.log('login success')
-          }).catch(() => {
-            this.loading = false
-          })
+          this.$store
+            .dispatch('Login', this.loginForm)
+            .then(() => {
+              this.loading = false
+              this.$router.push({ path: '/' })
+              console.log('login success')
+            })
+            .catch(() => {
+              this.loading = false
+            })
         } else {
           console.log('error submit!!')
           return false
@@ -91,55 +104,24 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
-$light_gray:#eee;
-
-/* reset element-ui css */
-.login-container {
-  .el-input {
-    display: inline-block;
-    height: 47px;
-    width: 85%;
-    input {
-      background: transparent;
-      border: 0px;
-      -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
-      &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: #fff !important;
-      }
-    }
-  }
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #454545;
-  }
-}
-
-</style>
-
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 .login-container {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: $bg;
+  background: #f0f2f5;
+  // svg-sprite-loader支持，但是不知道为什么识别不出来也没报错
+  // background-image: url('#icon-login');
+  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+  background-repeat: no-repeat;
   .login-form {
     position: absolute;
     left: 0;
     right: 0;
-    width: 520px;
+    width: 435px;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
   }
@@ -166,7 +148,7 @@ $light_gray:#eee;
   .title {
     font-size: 26px;
     font-weight: 400;
-    color: $light_gray;
+    color: $dark_gray;
     margin: 0px auto 40px auto;
     text-align: center;
     font-weight: bold;
@@ -181,4 +163,53 @@ $light_gray:#eee;
     user-select: none;
   }
 }
+</style>
+
+//底部copyright
+<style>
+ .abso_bottom{
+    height: 120px;
+    width: 100%;
+
+  }
+  .ant-layout-footer {
+    background: #f0f2f5;
+    padding: 0px 30px;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+    flex: 0 0 auto;
+    position: absolute;
+    bottom:0px;
+    left:0%;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .globalFooter___3uaww {
+    padding: 0 16px;
+    margin: 40px 0 40px;
+    text-align: center;
+  }
+
+  .globalFooter___3uaww .links___lgymZ {
+    margin-bottom: 8px;
+  }
+
+  .globalFooter___3uaww .copyright___3hV2q {
+    color: rgba(0,0,0,.45);
+    font-size: 14px;
+  }
+
+  .anticon {
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    text-align: center;
+    text-transform: none;
+    line-height: 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 </style>
