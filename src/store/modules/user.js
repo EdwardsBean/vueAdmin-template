@@ -6,7 +6,7 @@ const user = {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: []
+    role: ''
   },
 
   mutations: {
@@ -48,7 +48,7 @@ const user = {
           if (data.role) {
             commit('SET_ROLE', data.role)
           } else {
-            reject('getInfo: roles must be a non-null array !')
+            reject('getInfo: role must be a non-null!')
           }
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)
