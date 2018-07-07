@@ -1,4 +1,6 @@
-import { param2Obj } from '@/utils'
+import {
+  param2Obj
+} from '@/utils'
 
 const loginRes = {
   code: 200,
@@ -8,24 +10,40 @@ const loginRes = {
 }
 
 const userMap = {
+  courier: {
+    code: 200,
+    data: {
+      role: 'courier',
+      introduction: '我是快递员',
+      avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+      nickname: '你可爱的快递员'
+    }
+  },
   admin: {
     code: 200,
     data: {
-      roles: ['admin'],
-      token: 'admin',
+      role: 'admin',
       introduction: '我是超级管理员',
       avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-      name: 'Super Admin'
+      nickname: '你可爱的Admin'
     }
   },
-  editor: {
+  agent: {
     code: 200,
     data: {
-      roles: ['editor'],
-      token: 'editor',
-      introduction: '我是编辑',
+      role: 'agent',
+      introduction: '我是代理',
       avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-      name: 'Normal Editor'
+      nickname: '你可爱的代理'
+    }
+  },
+  user: {
+    code: 200,
+    data: {
+      role: 'user',
+      introduction: '我是用户',
+      avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+      nickname: '用户小可爱'
     }
   }
 }
@@ -33,7 +51,7 @@ const userMap = {
 export default {
   loginByUsername: config => {
     const { username } = JSON.parse(config.body)
-    loginRes.data.token = username
+    loginRes.data.username = username
     return loginRes
   },
   getUserInfo: config => {
