@@ -3,13 +3,17 @@ import loginAPI from './login'
 import articleAPI from './article'
 import remoteSearchAPI from './remoteSearch'
 import transactionAPI from './transaction'
+import addressApi from './address'
 
 // 登录相关
 Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
 Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
 Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
 
-// Mock.mock(/\/user\/login/, 'get',)
+Mock.mock(/\/address\/list/, 'get', addressApi.getAddress)
+Mock.mock(/\/address\/del/, 'post', addressApi.delAddress)
+Mock.mock(/\/address\/add/, 'post', addressApi.addAddress)
+Mock.mock(/\/address\/update/, 'post', addressApi.updateAddress)
 
 // 文章相关
 Mock.mock(/\/article\/list/, 'get', articleAPI.getList)

@@ -1,32 +1,43 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name:{{name}}</div>
-    <div class="dashboard-text">role:{{role}}</div>
+  <div class="app-container">
+    <el-card class="box-card">
+    
+    </el-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import request from '@/utils/request'
+import waves from '@/directive/waves' // 水波纹指令
 
 export default {
-  name: 'dashboard',
-  computed: {
-    ...mapGetters([
-      'name',
-      'role'
-    ])
+  directives: {
+    waves
+  },
+  data() {
+    return {
+      listLoading: true,
+      res: {
+        sendNum: 0,
+        standbyNum: 0,
+        money: 0,
+        orderNum: 0
+      }
+    }
+  },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      request({
+        url: '/address/list',
+        method: 'get'
+      }).then(res => {
+        this.listLoading = true
+        this.res = res.data
+      })
+    }
   }
 }
 </script>
-
-<style rel="stylesheet/scss" lang="scss" scoped>
-.dashboard {
-  &-container {
-    padding: 30px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
-}
-</style>
