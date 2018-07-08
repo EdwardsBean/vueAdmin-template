@@ -93,7 +93,7 @@ export const asyncRouterMap = [
     children: [{
       name: 'statadmin',
       component: () => import('@/views/stat/admin'),
-      meta: { title: '系统概览', icon: 'table', default: true },
+      meta: { title: '系统概览', icon: 'dashboard', default: true },
       path: 'index'
     }]
   },
@@ -108,7 +108,7 @@ export const asyncRouterMap = [
       name: 'statuser',
       component: () => import('@/views/stat/user'),
       path: 'user',
-      meta: { title: '系统概览', icon: 'table', default: true }
+      meta: { title: '系统概览', icon: 'dashboard', default: true }
     }]
   },
   {
@@ -122,18 +122,21 @@ export const asyncRouterMap = [
       name: 'statexpress',
       path: 'stat',
       component: () => import('@/views/stat/express'),
-      meta: { title: '单号统计', icon: 'table', default: true }
+      meta: { title: '单号统计', icon: 'dashboard', default: true }
     }]
   },
   {
     path: '/order',
     component: Layout,
     redirect: '/order/search',
+    meta: {
+      roles: ['express']
+    },
     children: [{
       name: 'ordersearch',
       path: 'list',
       component: () => import('@/views/order/search'),
-      meta: { title: '订单查询', icon: 'table' }
+      meta: { title: '订单查询', icon: 'order' }
     }]
   },
   {
@@ -212,42 +215,41 @@ export const asyncRouterMap = [
     children: [{
       path: 'list',
       component: () => import('@/views/address/list'),
-      meta: { title: '地址管理', icon: 'table' }
+      meta: { title: '地址管理', icon: 'address' }
     }]
   },
   {
-    name: '订单管理',
     path: '/order',
     component: Layout,
     redirect: '/order/list',
     children: [{
       path: 'list',
       component: () => import('@/views/order/list'),
-      meta: { title: '订单列表', icon: 'table' }
+      meta: { title: '订单列表', icon: 'order' }
     }]
   },
   {
     path: '/money',
     meta: {
       title: '财务管理',
-      icon: 'table'
+      icon: 'money'
     },
     component: Layout,
     redirect: 'noredirect',
     children: [{
       path: 'charge',
       component: () => import('@/views/money/charge'),
-      meta: { title: '在线充值', icon: 'table' }
+      meta: { title: '在线充值', icon: 'charge' }
     },
     {
       path: 'spend',
       component: () => import('@/views/money/order'),
-      meta: { title: '消费记录', icon: 'table' }
+      meta: { title: '消费记录', icon: 'spend' }
     },
     {
       path: 'income',
       component: () => import('@/views/money/income'),
-      meta: { title: '充值记录', icon: 'table' }
+      meta: { title: '充值记录', icon: 'income' }
     }
     ]
   }
