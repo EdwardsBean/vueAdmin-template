@@ -15,10 +15,11 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.role.length === 0) {
         store.dispatch('GetInfo').then(res => { // 拉取用户信息
-          store.dispatch('GenerateRoutes', res.data).then(() => { // 根据role权限生成可访问的路由表
-            console.log('add route:', store.getters.addRouters)
+          const role = res.data.role
+          store.dispatch('GenerateRoutes', { role }).then(() => { // 根据role权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+            // next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+            next({ name: store.getters.defaultRoute })
           })
         }).catch((err) => {
           store.dispatch('FedLogOut').then(() => {

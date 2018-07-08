@@ -10,7 +10,8 @@ const menu = [
       roles: ['admin', 'agent'] // you can set roles in root nav
     },
     children: [{
-      meta: { title: '系统概览', icon: 'table' },
+      name: 'systemOverview',
+      meta: { title: '系统概览', icon: 'table', default: true },
       path: 'index'
     }]
   },
@@ -20,6 +21,7 @@ const menu = [
       roles: ['admin'] // you can set roles in root nav
     },
     children: [{
+      name: 'expressCount',
       path: 'stat',
       meta: { title: '单号统计', icon: 'table' }
     }]
@@ -30,6 +32,7 @@ const menu = [
       roles: ['courier'] // you can set roles in root nav
     },
     children: [{
+      name: 'orderQuery',
       path: 'list',
       meta: { title: '订单查询', icon: 'table' }
     }]
@@ -86,6 +89,18 @@ const menu = [
     children: [{
       path: 'list',
       meta: { title: '会员管理', icon: 'table' }
+    }]
+  },
+  {
+    path: '/user',
+    icon: '',
+    meta: {
+      roles: ['user'] // you can set roles in root nav
+    },
+    children: [{
+      name: 'userOverview',
+      path: 'overview',
+      meta: { title: '首页', icon: 'table', default: true }
     }]
   },
   {

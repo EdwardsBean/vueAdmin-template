@@ -1,19 +1,19 @@
 import { param2Obj } from '@/utils'
-import menu from './menu'
 
 const loginRes = {
   code: 200,
   data: {
-    // 修改这里，来展示不同的菜单.admin ,courier, agent, user
-    token: 'admin'
+    // 修改这里，来展示不同的菜单.admin ,express, agent, user
+    token: 'user'
   }
 }
 
+// 服务端返回role,前端根据role来渲染菜单。后端接口做权限控制
 const userMap = {
-  courier: {
+  express: {
     code: 200,
     data: {
-      role: 'courier',
+      role: 'express',
       introduction: '我是快递员',
       avatar:
         'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
@@ -61,9 +61,7 @@ export default {
   getUserInfo: config => {
     const { token } = param2Obj(config.url)
     if (userMap[token]) {
-      var r = userMap[token]
-      r.data.menu = menu
-      return r
+      return userMap[token]
     } else {
       return false
     }
