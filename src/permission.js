@@ -18,8 +18,7 @@ router.beforeEach((to, from, next) => {
           const role = res.data.role
           store.dispatch('GenerateRoutes', { role }).then(() => { // 根据role权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            // next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-            next({ name: store.getters.defaultRoute })
+            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })
         }).catch((err) => {
           store.dispatch('FedLogOut').then(() => {

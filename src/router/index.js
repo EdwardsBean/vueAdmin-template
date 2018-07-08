@@ -28,77 +28,26 @@ import Layout from '../views/layout/Layout'
   }
 **/
 export const constantRouterMap = [
-  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
-  { path: '/404', component: () => import('@/views/404'), hidden: true },
-
-  // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/dashboard',
-  //   hidden: true,
-  //   children: [{
-  //     path: 'dashboard',
-  //     name: 'dashboard',
-  //     component: () => import('@/views/dashboard/index'),
-  //     meta: { title: '主页' }
-  //   }]
-  // },
-
-  // {
-  //   path: '/example',
-  //   component: Layout,
-  //   redirect: '/example/table',
-  //   name: 'Example',
-  //   meta: { title: '例子', icon: 'example' },
-  //   children: [
-  //     {
-  //       path: 'table',
-  //       name: 'table',
-  //       component: () => import('@/views/table/index'),
-  //       meta: { title: '表格', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'tree',
-  //       name: 'tree',
-  //       component: () => import('@/views/tree/index'),
-  //       meta: { title: '树形图', icon: 'tree' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'form',
-  //       component: () => import('@/views/form/index'),
-  //       meta: { title: '表单', icon: 'form' }
-  //     }
-  //   ]
-  // },
-
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '/login', component: () => import('@/views/login/index'), hidden: true }
 ]
 
 export const asyncRouterMap = [
   {
-    path: '/stat',
+    path: '',
     component: Layout,
-    redirect: '/stat/admin',
+    redirect: 'stat/admin',
     meta: {
       roles: ['admin', 'agent']
     },
     children: [{
       name: 'statadmin',
       component: () => import('@/views/stat/admin'),
-      meta: { title: '系统概览', icon: 'dashboard', default: true },
-      path: 'index'
+      meta: { title: '系统概览', icon: 'dashboard' },
+      path: 'stat/admin'
     }]
   },
   {
-    path: '/stat',
+    path: '',
     component: Layout,
     redirect: '/stat/user',
     meta: {
@@ -107,12 +56,12 @@ export const asyncRouterMap = [
     children: [{
       name: 'statuser',
       component: () => import('@/views/stat/user'),
-      path: 'user',
-      meta: { title: '系统概览', icon: 'dashboard', default: true }
+      path: 'stat/user',
+      meta: { title: '系统概览', icon: 'dashboard' }
     }]
   },
   {
-    path: '/stat',
+    path: '',
     component: Layout,
     redirect: '/stat/express',
     meta: {
@@ -120,9 +69,9 @@ export const asyncRouterMap = [
     },
     children: [{
       name: 'statexpress',
-      path: 'stat',
+      path: '/stat/stat',
       component: () => import('@/views/stat/express'),
-      meta: { title: '单号统计', icon: 'dashboard', default: true }
+      meta: { title: '单号统计', icon: 'dashboard' }
     }]
   },
   {
@@ -143,7 +92,7 @@ export const asyncRouterMap = [
     path: '/system',
     meta: {
       title: '系统设置',
-      roles: ['admin', 'agent'],
+      roles: ['admin'],
       icon: 'table'
     },
     component: Layout,
@@ -157,6 +106,11 @@ export const asyncRouterMap = [
       path: 'param',
       component: () => import('@/views/system/param'),
       meta: { title: '通用参数', icon: 'table' }
+    },
+    {
+      path: 'param',
+      component: () => import('@/views/system/product'),
+      meta: { title: '产品管理', icon: 'table' }
     },
     {
       path: 'express',
@@ -222,6 +176,9 @@ export const asyncRouterMap = [
     path: '/order',
     component: Layout,
     redirect: '/order/list',
+    meta: {
+      roles: ['user', 'admin', 'agent']
+    },
     children: [{
       path: 'list',
       component: () => import('@/views/order/list'),
@@ -232,7 +189,8 @@ export const asyncRouterMap = [
     path: '/money',
     meta: {
       title: '财务管理',
-      icon: 'money'
+      icon: 'money',
+      roles: ['user']
     },
     component: Layout,
     redirect: 'noredirect',
@@ -252,7 +210,9 @@ export const asyncRouterMap = [
       meta: { title: '充值记录', icon: 'income' }
     }
     ]
-  }
+  },
+  { path: '/404', component: () => import('@/views/404'), hidden: true },
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
