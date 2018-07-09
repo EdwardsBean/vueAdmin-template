@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <panel-group :sendNum='res.sendNum'></panel-group>
+    <panel-group :items=res></panel-group>
 
     <el-card class="box-card">
     </el-card>
@@ -22,12 +22,12 @@ export default {
   data() {
     return {
       listLoading: true,
-      res: {
-        sendNum: 1000,
-        standbyNum: 1000,
-        money: 1000,
-        orderNum: 1000
-      }
+      res: [
+        { name: '已发快递', icon: 'express-send', val: 1000 },
+        { name: '待发快递', icon: 'express-wait', val: 2000 },
+        { name: '订单数', icon: 'order', val: 3000 },
+        { name: '余额', icon: 'money', val: 1000 }
+      ]
     }
   },
   created() {

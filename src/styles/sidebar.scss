@@ -5,6 +5,8 @@
     transition: margin-left .28s;
     margin-left: 250px;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
   // 侧边栏
   .sidebar-container {

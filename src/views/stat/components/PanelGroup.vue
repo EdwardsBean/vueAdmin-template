@@ -1,49 +1,17 @@
 <template>
   <el-row class="panel-group" :gutter="40">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-for="item in items" v-bind:key="item.name" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class='card-panel' @click="handleSetLineChartData('newVisitis')">
-        <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="express-send" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper" :class="['icon-' + item.icon]">
+          <svg-icon :icon-class="item.icon" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">已发快递</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="sendNum" :duration="2600"></count-to>
+          <div class="card-panel-text">{{item.name}}</div>
+          <count-to class="card-panel-num" :startVal="0" :endVal="item.val" :duration="2600"></count-to>
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
-        <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="express-wait" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">待发快递</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="standbyNum" :duration="3000"></count-to>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('purchases')">
-        <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="order" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">订单数</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="orderNum" :duration="3200"></count-to>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
-        <div class="card-panel-icon-wrapper icon-shoppingCard">
-          <svg-icon icon-class="money" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">余额</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="money" :duration="3600"></count-to>
-        </div>
-      </div>
-    </el-col>
+
   </el-row>
 </template>
 
@@ -52,10 +20,7 @@ import CountTo from 'vue-count-to'
 
 export default {
   props: {
-    sendNum: Number,
-    standbyNum: Number,
-    money: Number,
-    orderNum: Number
+    items: Array
   },
   components: {
     CountTo
@@ -88,29 +53,29 @@ export default {
       .card-panel-icon-wrapper {
         color: #fff;
       }
-      .icon-people {
+      .icon-express-send {
          background: #40c9c6;
       }
-      .icon-message {
+      .icon-express-wait {
         background: #36a3f7;
       }
-      .icon-money {
+      .icon-order {
         background: #f4516c;
       }
-      .icon-shoppingCard {
+      .icon-money {
         background: #34bfa3
       }
     }
-    .icon-people {
+    .icon-express-send {
       color: #40c9c6;
     }
-    .icon-message {
+    .icon-express-wait {
       color: #36a3f7;
     }
-    .icon-money {
+    .icon-order {
       color: #f4516c;
     }
-    .icon-shoppingCard {
+    .icon-money {
       color: #34bfa3
     }
     .card-panel-icon-wrapper {
