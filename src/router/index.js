@@ -61,116 +61,26 @@ export const asyncRouterMap = [
     }]
   },
   {
-    path: '',
-    component: Layout,
-    redirect: '/stat/express',
-    meta: {
-      roles: ['express']
-    },
-    children: [{
-      name: 'statexpress',
-      path: '/stat/stat',
-      component: () => import('@/views/stat/express'),
-      meta: { title: '单号统计', icon: 'dashboard' }
-    }]
-  },
-  {
-    path: '/order',
-    component: Layout,
-    redirect: '/order/search',
-    meta: {
-      roles: ['express']
-    },
-    children: [{
-      name: 'ordersearch',
-      path: 'list',
-      component: () => import('@/views/order/search'),
-      meta: { title: '订单查询', icon: 'order' }
-    }]
-  },
-  {
     path: '/system',
     meta: {
       title: '系统设置',
       roles: ['admin'],
-      icon: 'table'
+      icon: 'config'
     },
     component: Layout,
     redirect: 'noredirect',
-    children: [{
-      path: 'level',
-      component: () => import('@/views/system/level'),
-      meta: { title: '快递等级', icon: 'table' }
-    },
-    {
-      path: 'param',
-      component: () => import('@/views/system/param'),
-      meta: { title: '通用参数', icon: 'table' }
-    },
-    {
-      path: 'param',
-      component: () => import('@/views/system/product'),
-      meta: { title: '产品管理', icon: 'table' }
-    },
-    {
-      path: 'express',
-      component: () => import('@/views/system/express'),
-      meta: { title: '快递费用', icon: 'table' }
-    }
+    children: [
+      {
+        path: 'param',
+        component: () => import('@/views/system/config'),
+        meta: { title: '通用参数', icon: 'param' }
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/system/user'),
+        meta: { title: '用户管理', icon: 'user' }
+      }
     ]
-  },
-  {
-    path: '/agent',
-    icon: '',
-    component: Layout,
-    redirect: '/agent/list',
-    meta: {
-      roles: ['admin']
-    },
-    children: [{
-      path: 'list',
-      component: () => import('@/views/agent/list'),
-      meta: { title: '代理管理', icon: 'table' }
-    }]
-  },
-  {
-    path: '/express',
-    component: Layout,
-    redirect: '/express/list',
-    meta: {
-      roles: ['admin']
-    },
-    children: [{
-      path: 'list',
-      component: () => import('@/views/express/list'),
-      meta: { title: '快递员管理', icon: 'table' }
-    }]
-  },
-  {
-    path: '/user',
-    component: Layout,
-    redirect: '/user/list',
-    meta: {
-      roles: ['admin', 'agent']
-    },
-    children: [{
-      path: 'list',
-      component: () => import('@/views/user/list'),
-      meta: { title: '会员管理', icon: 'table' }
-    }]
-  },
-  {
-    path: '/address',
-    component: Layout,
-    redirect: '/address/list',
-    meta: {
-      roles: ['user']
-    },
-    children: [{
-      path: 'list',
-      component: () => import('@/views/address/list'),
-      meta: { title: '地址管理', icon: 'address' }
-    }]
   },
   {
     path: '/order',
@@ -184,32 +94,6 @@ export const asyncRouterMap = [
       component: () => import('@/views/order/list'),
       meta: { title: '订单列表', icon: 'order' }
     }]
-  },
-  {
-    path: '/money',
-    meta: {
-      title: '财务管理',
-      icon: 'money',
-      roles: ['user']
-    },
-    component: Layout,
-    redirect: 'noredirect',
-    children: [{
-      path: 'charge',
-      component: () => import('@/views/money/charge'),
-      meta: { title: '在线充值', icon: 'charge' }
-    },
-    {
-      path: 'spend',
-      component: () => import('@/views/money/order'),
-      meta: { title: '消费记录', icon: 'spend' }
-    },
-    {
-      path: 'income',
-      component: () => import('@/views/money/income'),
-      meta: { title: '充值记录', icon: 'income' }
-    }
-    ]
   },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
   { path: '*', redirect: '/404', hidden: true }
