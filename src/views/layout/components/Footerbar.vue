@@ -22,6 +22,7 @@
   .abso_bottom{
     height: 120px;
     width: 100%;
+    align-self:  flex-end;
 
   }
   .ant-layout-footer {

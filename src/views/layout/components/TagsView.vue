@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     generateRoute() {
-      if (this.$route.name) {
+      if (this.$route.name || this.$route.meta && this.$route.meta.title) {
         return this.$route
       }
       return false
