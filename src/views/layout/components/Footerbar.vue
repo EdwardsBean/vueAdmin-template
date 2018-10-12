@@ -2,8 +2,8 @@
   <div class="abso_bottom">
     <div class="ant-layout-footer" >
       <div class="globalFooter___3uaww">
-        <div class="links___lgymZ">Vue Design</div>
-        <div class="copyright___3hV2q">Copyright <i class="anticon anticon-copyright"></i> 2018 XX科技有限公司出品</div>
+        <div class="links___lgymZ">管理平台</div>
+        <div class="copyright___3hV2q">Copyright <i class="anticon anticon-copyright"></i> 2018 奔豆科技有限公司出品</div>
       </div>
     </div>
   </div>

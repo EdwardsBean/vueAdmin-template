@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-      <h3 class="title">空包平台</h3>
+      <h3 class="title">管理平台</h3>
       <el-form-item prop="username">
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username">
           <template slot="prepend">
@@ -28,9 +28,9 @@
     <div class="abso_bottom">
       <div class="ant-layout-footer">
         <div class="globalFooter___3uaww">
-          <div class="links___lgymZ">豆 Design</div>
+          <div class="links___lgymZ">管理后台</div>
           <div class="copyright___3hV2q">Copyright
-            <i class="anticon anticon-copyright"></i> 2018 伟创科技有限公司出品</div>
+            <i class="anticon anticon-copyright"></i> 2018 奔豆科技有限公司出品</div>
         </div>
       </div>
     </div>
