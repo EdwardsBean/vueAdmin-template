@@ -15,7 +15,7 @@ import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'mock') {
   require('./mock') // simulation data
 }
 Vue.use(ElementUI, { locale })
