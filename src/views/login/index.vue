@@ -10,7 +10,7 @@
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.passsord" autoComplete="on" placeholder="password">
+        <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="password">
           <template slot="prepend">
             <svg-icon icon-class="password"></svg-icon>
           </template>
